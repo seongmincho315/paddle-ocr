@@ -89,7 +89,9 @@ WORKDIR ${APP_DIR}
 
 COPY --from=deps ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 COPY --from=models /models /models
-COPY config docker etc ${APP_DIR}/
+COPY config ${APP_DIR}/config
+COPY docker ${APP_DIR}/docker
+COPY etc ${APP_DIR}/etc
 
 RUN ln -sf ${APP_DIR}/config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf && \
     chmod +x ${APP_DIR}/etc/*.sh
